@@ -6,7 +6,6 @@ function SearchWeather() {
     const [data, setData] = useState();
     const [input, setInput] = useState("");
     const [isLoading, setisLoading] = useState(true);
-    let componentMounted = true;
 
 
     useEffect(() => {
@@ -22,35 +21,11 @@ function SearchWeather() {
 
     }, [search]);
 
-    let emoji = "fa-cloud";
+    // let emoji = "fa-cloud";
     // var iconcode = data.weather[0].icon;
     // console.log(iconcode);
     // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
-    // let wea = data.weather[0].main;
-    // console.log(wea);
-    // let mai = data.main;
-    // console.log(data.main);
-
-    // if(typeof mai != "undefined"){
-    //     if(wea == "Clouds"){
-    //         emoji = "fa-cloud";
-    //     }else if(wea == "Thunderstorm"){
-    //         emoji = "fa-bolt";
-    //     }else if(wea == "Drizzle"){
-    //         emoji = "fa-cloud-rain";
-    //     }else if(wea == "Rain"){
-    //         emoji = "fa-cloud-rain";
-    //     }else if(wea == "Snow"){
-    //         emoji = "fa-snow-flake";
-    //     }else{
-    //         emoji = "fa-smog";
-    //     }
-    // }else{
-    //     return(
-    //         <div>...Loding</div>
-    //     )
-    // }
+    // "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
 
     // let temp = (data.main.temp - 273.15).toFixed(2);
     // let temp_min = (data.main.temp_min - 273.15).toFixed(2);
@@ -70,6 +45,7 @@ function SearchWeather() {
         second: '2-digit'
     });
 
+    // Handling Events
     const handleSubmit = (event) => {
         event.preventDefault();
         setSearch(input);
@@ -95,7 +71,7 @@ function SearchWeather() {
                                         <form onSubmit={handleSubmit}>
                                             <div class="input-group mb-3 w-75 mx-auto">
                                                 <input type="search" class="form-control" id="search" placeholder="Search City" aria-label="RSearch City"
-                                                    aria-describedby="basic-addon2" name="search" value={input} onChange={(e) => setInput(e.target.value)} required />
+                                                    aria-describedby="basic-addon2" name="search" value={input} onChange={(e) => setInput(e.target.value)} required autoComplete='off' />
                                                 <button type="submit" class="input-group-text" id="basic-addon2">
                                                     <i className="fas fa-search"></i>
                                                 </button>
@@ -109,8 +85,7 @@ function SearchWeather() {
                                                 {time}
                                             </p>
                                             <hr />
-                                            {/* <i className={`fas ${emoji} fa-4x`}></i> */}
-                                            {/* <div id="icon"><img id="wicon" src={iconurl} alt="Weather icon"/></div> */}
+                                            <div id="icon"><img id="wicon" src={"http://openweathermap.org/img/w/" + data.weather[0].icon + ".png"} alt="Weather icon" /></div>
                                             <h1 className="fw-bolder mb-5">{data.main.temp} &deg;C</h1>
                                             <p className="lead fw-bolder mb-0">{data.weather[0].main}</p>
                                             <p className="lead">{data.main.temp_min}&deg;C | {data.main.temp_max}&deg;C</p>
